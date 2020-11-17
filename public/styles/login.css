@@ -1,0 +1,85 @@
+.login {
+    /* align-items: center; */
+    text-align: center;
+    margin-top: 15rem;
+}
+
+.login-form {
+    max-width: 38rem;
+    margin: auto;
+}
+
+.form-control {
+    margin: 5rem;
+    position: relative;
+}
+
+.form-control > * {
+    display: inline-block;
+    width: 100%;
+}
+
+.label-form {
+    position: absolute;
+    left: 0;
+    top: 3px;
+    text-align: left;
+    font-size: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease 0.2s;
+}
+
+.form-control > input {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    outline: transparent;
+    border: none;
+    border-bottom: 1px solid;
+    border-bottom-color: #aaa ;
+    background: none;
+    width: 80%;
+    transition: all ease-in 0.2s;
+}
+
+.form-control > input:focus{
+        border-bottom-color: blue;
+        width: 100%;
+}
+
+.form-control > input:focus ~ .label-form {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-3rem);
+}
+
+.form-control > input:focus::placeholder{
+    opacity: 0;
+}
+
+.form-control > input:focus:invalid{
+    border-bottom-color: red;
+}
+
+.form-control > input:focus:valid{
+    border-bottom-color: green;
+}
+
+.message__link{
+    display: block;
+    font-size: 1.3rem;
+    color: #125ccc;
+    transform: translateY(0rem);
+    transition: transform ease 0.4s;
+}
+
+.message__link:hover{
+    transform: translateY(-1rem);
+}
+
+
+.message__warn{
+    display: block;
+    font-size: 1.3rem;
+    color: red;
+}

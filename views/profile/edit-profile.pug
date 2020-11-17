@@ -1,0 +1,58 @@
+extends ../layouts/mainlayout.pug
+
+block styles
+    link(rel="stylesheet", href="/styles/profile.css")
+    
+
+block content
+    main
+        section.profile-edit
+            
+            div
+                //- figure.profile__picture(style=`background-img:url(${user.profilepic ? user.profilepic : ''})`)
+                img(src=`${user.profilepic ? user.profilepic : ''}`, alt="", srcset="").profile__picture
+
+            form(action="/user/post-editprofile", method="POST", enctype="multipart/form-data" novalidate)
+
+                input(type="hidden", name="_csrf", value=(csrfToken))
+
+                .form-field
+                    span.imgupload-wrap
+                        input(type="file", name="image", id="img-upload")
+                        label(for="img-upload").btn.btn-primary Upload Image
+                if(message)
+                    .form-field
+                        p.error #{message}
+
+                .form-field
+                    div.field-wrap
+                        input(type="text", name="username", id="uname",placeholder="User Name", value=(user ? user.name : ''))
+                        label(for="uname") User Name
+                
+                    div.field-wrap
+                        input(type="email", name="email", id="email",placeholder="Email Address",value=(user.email ? user.email : ''))
+                        label(for="email") Email Address
+
+                .form-field
+                    div.field-wrap
+                        input(type="text", name="firstname",placeholder="First Name", value=(user.firstname ? user.firstname : ''))
+                        label(for="img-upload") First Name
+
+                    div.field-wrap
+                        input(type="text", name="lastname", placeholder="Last Name", value=(user.lastname ? user.lastname : ''))
+                        label(for="img-upload") Last Name
+                
+                .form-field
+                    div.field-wrap
+                        textarea(name="address", rows="7" placeholder="Address") #{user.address ? user.address : 'N/A'}
+                        label(for="img-upload") Address
+                
+                
+                
+               
+
+                .form-field
+                    button(type="submit").btn.btn-primary Save Changes
+
+            .form-field
+                a(href="/user/profile").btn.btn-primary Back to Profile

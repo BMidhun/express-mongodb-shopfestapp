@@ -1,0 +1,265 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fdfdfd;
+  line-height: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*      */
+
+.navbar {
+    padding: 1.5rem;
+    color: #edffd9;
+    background-color: #3a3042;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .chkbox {
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+    display: none;
+  }
+  .chkbox-label {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 150;
+  }
+
+  .chkbox-label:hover {
+    border: 1px solid #bbb;
+  }
+
+  .chkbox:checked ~ .chkbox-label {
+    position: relative;
+    z-index: 100;
+    left: 25%;
+    top: 0rem;
+    border: none;
+    z-index: 150;
+  }
+
+  .sidemenu-line {
+    position: relative;
+    display: inline-block;
+    width: 1.5rem;
+    height: 2px;
+    background: white;
+  }
+
+  .chkbox-label:hover > .sidemenu-line {
+    background: #ddd;
+  }
+
+  .sidemenu-line::before,
+  .sidemenu-line::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 1.5rem;
+    height: 2px;
+    background: inherit;
+    left: 0;
+  }
+
+  .sidemenu-line::before {
+    top: -8px;
+  }
+  .sidemenu-line::after {
+    top: 8px;
+  }
+
+  .chkbox:checked ~ .chkbox-label > .sidemenu-line {
+    width: 0;
+  }
+
+  .chkbox:checked ~ .chkbox-label > .sidemenu-line::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .chkbox:checked ~ .chkbox-label > .sidemenu-line::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  .sidemenu-wrap {
+    position: fixed;
+    width: 0%;
+    height: 100%;
+  }
+
+  .sidemenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    visibility: hidden;
+    background: #333;
+    color: #fff;
+  }
+
+
+  .chkbox:checked  ~ .sidemenu {
+    width: 30%;
+    visibility: visible;
+    transition: all ease-in 0.3s;
+    z-index: 100;
+  }
+
+
+  .sidemenu__list {
+    margin: 6rem 0;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: all ease 0.2s 0.5s;
+  }
+
+  .chkbox:checked  ~ .sidemenu > .sidemenu__list {
+    opacity: 1;
+  }
+
+  .sidemenu__item {
+    list-style: none;
+  }
+
+
+  .sidemenu__link {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: large;
+  }
+
+  .sidemenu__link:hover{
+      background: #666;
+  } 
+
+  .form-input-text {
+    display: inline-block;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cdcdcd;
+    width: 40%;
+    font-size: large;
+    outline: none;
+  }
+
+  .form-input-text:focus{
+    border : 1px solid rgb(50, 134, 243);
+    box-shadow: 0 0.1rem 0.3rem rgba(50, 50, 243,0.3);
+  }
+
+  .btn {
+    border: none;
+    padding: 1rem;
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background:#DB9D47;
+    color: #eee;
+  }
+
+  .btn-primary:hover {
+    background: #FF784F;
+  }
+
+  h1,h2,h3,p{
+    margin: 2rem 0;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h2{
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  h4{
+    font-size: 1.5rem;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .sectiontitle{
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 2rem;
+  }
+
+  .error {
+    text-align: center;
+    color: red;
+    font-size: 1.2rem; }
+
+.pagination-wrap {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.pagination{
+  max-width: 80%;
+    margin: auto;
+}
+
+.pagination__pill {
+  display: inline-block;
+  padding: 1rem;
+  font-size: 2rem;
+  background: #DB9D47;
+  color: #fee;
+  border-radius: 1rem;
+  margin: 0 0.5rem;
+}
+
+.pagination__pill-current {
+  background: #FF784F;
+}
+
+.pagination__pill:hover{
+  background: #FF784F;
+}

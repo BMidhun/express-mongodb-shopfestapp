@@ -1,0 +1,160 @@
+.profile {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(25rem,max-content));
+    justify-content: center;
+    margin-top: 10rem;
+    grid-column-gap: 0.2rem;
+}
+
+.profilepic-wrap{
+    background: #efefef;
+    box-shadow: 0 2rem 1rem rgba(0,0,0,0.02);
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile__picture {
+    display: block;
+    height: 20rem;
+    width: 20rem;
+    background: #333;
+    margin: 0 auto;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+    /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcShS1C-xFeLP3-RfVoQEOSbCPiq7f01FQYtgw&usqp=CAU); */
+    background: cover;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.profileinfo-wrap {
+    background: #efefef;
+    box-shadow: 0 2rem 1rem rgba(0,0,0,0.02);
+    padding: 2rem;
+    text-align: center;
+}
+
+.profile-info {
+    text-align: left;
+    font-size: 1.5rem;
+    margin: 2rem 0;
+}
+
+.profile-info__data {
+    display: block;
+    white-space: pre-line;
+    margin: 1rem 0;
+}
+
+.profile-action{
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+
+.profile-edit {
+    padding: 5rem;
+    max-width: 1140px;
+    margin: auto;
+}
+
+.imgupload-wrap{
+    display: block;
+    margin: auto;
+    width: 15rem;
+    position: relative;
+}
+
+.imgupload-wrap input{
+    opacity: 0;
+}
+
+.imgupload-wrap label{
+    display: block;
+    font-size: 1.5rem;
+    background: #DB9D47;
+    color: #fff;
+    padding: 1.2rem;
+    text-align: center;
+    border-radius: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 13%;
+    transform: translateY(-9px);
+    cursor: pointer;
+}
+
+.form-field{
+    margin-top: 3rem;
+
+}
+
+.field-wrap{
+    position: relative;
+    margin:3rem 0;
+}
+
+.field-wrap input {
+    padding:1.2rem 1rem;
+    border:1px solid #aaa;
+    border-radius: 1rem;
+    width: 100%;
+    outline: none;
+}
+
+.field-wrap input:focus {
+    border:1px solid rgb(30, 138, 201)
+}
+
+.field-wrap textarea:focus {
+    border:1px solid rgb(30, 138, 201)
+}
+
+.field-wrap label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(10px,9px);
+    font-size: 1.3rem;
+    color: darkcyan;
+    background: #fff;
+    transition: transform ease-in 0.2s;
+    transition: opacity ease-in 0.3s;
+}
+
+.field-wrap input:focus ~ label {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(10px,-10px);
+}
+
+.field-wrap textarea:focus ~ label {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(10px,-10px);
+}
+
+.field-wrap input:focus::placeholder {
+    visibility: hidden;
+}
+
+.field-wrap textarea:focus::placeholder {
+    visibility: hidden;
+}
+
+.form-field textarea {
+    resize: none;
+    width: 100%;
+    border-radius: 1.5rem;
+    outline: none;
+    padding: 1.5rem 1rem;
+    border: 1px solid #aaa;
+}

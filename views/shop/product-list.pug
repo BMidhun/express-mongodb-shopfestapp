@@ -1,0 +1,53 @@
+extends ../layouts/mainlayout.pug
+
+block styles
+    link(rel="stylesheet", href="/styles/shop.css")
+
+block content
+    main
+        if products.length > 0
+            .shopgrid
+                
+                each product in products
+                    article.shopgrid__item
+                        h3 #{product.pname}
+                        figure.shopitem__figure
+                            img.shopitem__img(src=((product.purl)) alt="pic.jpg")
+                        span.shopitem__price $#{product.price}
+                        span.shopitem__text #{product.pdescription}
+                        div.shopitem__links
+                            if (isAdmin === false)
+                                    a(href="/product/"+product._id).btn.btn-primary Know More
+                                    if(isLoggedIn === true)
+                                        form(action="/shop/addtocart", method="post")
+                                            input(type="hidden", name="_csrf", value=(csrfToken))
+                                            input(type="hidden", name="productid",value=(product._id))
+                                            button(type="submit").btn.btn-primary Add to cart
+                            else
+                                    
+                                a(href="/product/edit-product/"+product._id+"?edit=true").btn.btn-primary Edit
+                                //- form(action="/product/delete-product/", method="post")
+                                input(type="hidden", name="_csrf", value=(csrfToken))
+                                input(type="hidden", name="productid", value=(product._id))
+                                button(type="button",onclick="deleteProduct(this)").btn.btn-primary Delete
+            
+            .pagination-wrap
+                .pagination
+                    if(hasPreviousPage)
+                        a(href=`?page=${currentPage-1}`).pagination__pill Previous
+                    -var n = 1;
+                    while n <= totalpages
+                        if(currentPage && currentPage==n)
+                            a(href=`?page=${n}`).pagination__pill.pagination__pill-current #{n}
+                        else
+                            a(href=`?page=${n}`).pagination__pill #{n}
+                        -n++
+                    if(hasNextPage)
+                        a(href=`?page=${currentPage+1}`).pagination__pill Next
+                    
+
+        else
+            .shopgrid
+                h3 Oops No Products Available!
+
+    script(src="/js/edit-product.js")

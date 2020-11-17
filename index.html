@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      *,
+      *::after,
+      *::before {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .navbar {
+        background: rgb(7, 7, 85);
+        color: antiquewhite;
+      }
+      .chkbox {
+        display: inline-block;
+        height: 3rem;
+        width: 3rem;
+        display: none;
+      }
+      .chkbox-label {
+        display: flex;
+        width: 3rem;
+        height: 3rem;
+        text-align: center;
+        border: 1px solid #eee;
+        border-radius: 0.5rem;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .chkbox-label:hover {
+        border: 1px solid #bbb;
+      }
+
+      .chkbox:checked ~ .chkbox-label {
+        position: relative;
+        z-index: 100;
+        left: 25%;
+        top: 0rem;
+        border: none;
+      }
+
+      .sidemenu-line {
+        position: relative;
+        display: inline-block;
+        width: 1.5rem;
+        height: 2px;
+        background: white;
+      }
+
+      .chkbox-label:hover > .sidemenu-line {
+        background: #ddd;
+      }
+
+      .sidemenu-line::before,
+      .sidemenu-line::after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 1.5rem;
+        height: 2px;
+        background: inherit;
+        left: 0;
+      }
+
+      .sidemenu-line::before {
+        top: -12px;
+      }
+      .sidemenu-line::after {
+        top: 12px;
+      }
+
+      .chkbox:checked ~ .chkbox-label > .sidemenu-line {
+        width: 0;
+      }
+
+      .chkbox:checked ~ .chkbox-label > .sidemenu-line::before {
+        top: 0;
+        transform: rotate(45deg);
+      }
+
+      .chkbox:checked ~ .chkbox-label > .sidemenu-line::after {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+
+      .sidemenu-wrap {
+        position: fixed;
+        width: 0%;
+        height: 100%;
+      }
+
+      .sidemenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        visibility: hidden;
+        background: #333;
+        color: #fff;
+        transition: all ease-in 0.3s;
+      }
+
+      .sidemenu-wrap .sidemenu__list {
+        display: none;
+      }
+
+      .chkbox:checked ~ .sidemenu-wrap {
+        width: 100%;
+        background: #aaa;
+        z-index: 99;
+      }
+
+      .chkbox:checked ~ .sidemenu-wrap > .sidemenu {
+        width: 30%;
+        visibility: visible;
+      }
+
+      .chkbox:checked ~ .sidemenu-wrap .sidemenu__list {
+        display: block;
+      }
+
+      .sidemenu__list {
+        list-style: none;
+        margin: 3rem 0;
+      }
+
+      .sidemenu__item {
+      }
+
+      .sidemenu__link {
+        display: block;
+        width: 100%;
+        margin: 1rem 0;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .sidemenu__link:hover{
+          background: #666;
+      }
+      
+      
+      
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div>
+        <input type="checkbox" class="chkbox" id="sidebar" />
+        <label for="sidebar" class="chkbox-label">
+          <span class="sidemenu-line"></span>
+        </label>
+        <div class="sidemenu-wrap">
+          <div class="sidemenu">
+            <ul class="sidemenu__list">
+              <li class="sidemenu__item"><a class="sidemenu__link">Shop</a></li>
+              <li class="sidemenu__item">
+                <a class="sidemenu__link">Your Cart</a>
+              </li>
+              <li class="sidemenu__item">
+                <a class="sidemenu__link">Your Orders</a>
+              </li>
+              <li class="sidemenu__item">
+                <a class="sidemenu__link">Add Products</a>
+              </li>
+              <li class="sidemenu__item">
+                <a class="sidemenu__link">Edit/Delete Products</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

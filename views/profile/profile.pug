@@ -1,0 +1,43 @@
+extends ../layouts/mainlayout.pug
+
+block styles
+    link(rel="stylesheet", href="/styles/profile.css")
+
+block content
+    main
+        section.profile
+            .profilepic-wrap
+                img(src=`${userdata.profilepic ? userdata.profilepic : ''}`, alt="", srcset="").profile__picture
+
+                   
+                        
+
+            .profileinfo-wrap
+                .profile-info
+                    h4.profile-info__field Username 
+                    span.profile-info__data  #{userdata.name}
+                .profile-info
+                    h4.profile-info__field Email 
+                    span.profile-info__data  #{userdata.email}
+                .profile-info
+                    h4.profile-info__field FirstName 
+                    span.profile-info__data  #{userdata.firstname ? userdata.firstname : 'N/A'}
+                .profile-info
+                    h4.profile-info__field LastName 
+                    span.profile-info__data  #{userdata.lastname ? userdata.lastname : 'N/A'}
+                .profile-info
+                    h4.profile-info__field Address 
+                    span.profile-info__data  #{userdata.address ? userdata.address : 'N/A'}
+
+
+                
+                .profile-action
+                    a(href="/user/edit-profile").btn.btn-primary Edit Profile
+
+                    form(action="/user/reset-password", method="post")
+                        input(type="hidden", name="_csrf", value=(csrfToken))
+                        button(type="submit").btn.btn-primary Reset Password
+                if(message)
+                    p.profile-msg #{message}
+                
+                

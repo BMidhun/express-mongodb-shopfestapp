@@ -1,0 +1,38 @@
+extends ../layouts/mainlayout.pug
+
+block styles
+    link(rel="stylesheet", href="/styles/cart.css")
+
+block content
+    main
+        section.cart
+            h2.sectiontitle YOUR CART
+            if(cartitems && cartitems.length > 0)
+                ul.cartlist
+                each item in cartitems
+                    li.cartitem
+                        figure.cartitem__figure
+                            img(src=(item.purl), alt="Image Not Found!")
+                        .cartitem__info
+                            span #{item.pname}
+                        .cartitem__qty
+                            span X
+                            span.quantity #{item.qty}
+                        .cartitem__price
+                            span $ #{item.price} USD  
+                        .cartitem__delete
+                            form(action="/shop/delete-cartitem", method="post")
+                                input(type="hidden", name="_csrf", value=(csrfToken))
+                                input(type="hidden", name="productid", value=(item._id))
+                                button(type="submit").btn.btn-primary Delete
+                .carttotal
+                    span Total
+                    span $#{totalamount} USD
+                .cartsubmit
+                    //- form(action="/shop/create-order", method="post")
+                    //-     input(type="hidden", name="_csrf", value=(csrfToken))
+                    //-     input(type="hidden", name="totalamount", value=(totalamount))
+                    //-     button(type="submit").btn.btn-primary PROCEED TO CHECKOUT   
+                    a.btn.btn-primary(href="/shop/checkout") PROCEED TO CHECKOUT          
+            else
+                h3 No Products Found in Cart!

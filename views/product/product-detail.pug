@@ -1,0 +1,21 @@
+extends ../layouts/mainlayout.pug
+
+block styles
+    link(rel="stylesheet", href="/styles/product.css")
+
+block content
+    main
+        section.productdetail
+            .productimgwrap
+                img(src=`${product.purl}`,alt="").productdetail__img
+            .productinfo
+                h2.productinfo__title #{product.pname}
+                h3.productinfo__price $#{product.price} USD
+                h3 Product Description :
+                p.productinfo__description #{product.pdescription}
+                if(isLoggedIn === true)
+                    form(action="/shop/addtocart", method="post")
+                        input(type="hidden", name="_csrf", value=(csrfToken))
+                        input(type="hidden", name="productid", value=(product._id))
+                        button.btn.btn-primary Add to Cart
+                        

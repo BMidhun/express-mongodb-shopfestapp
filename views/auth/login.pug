@@ -1,0 +1,23 @@
+extends ../layouts/mainlayout.pug
+
+block styles
+    link(rel="stylesheet", href="/styles/login.css")
+
+
+block content
+    main
+        section.login
+            form(action="/auth/login", method="post", novalidate=(true)).login-form
+                .form-control
+                    input(type="email", name="email",required=true, placeholder="Enter your email address", id="uemail", value = (message ? data.email : ''))
+                    label(for="uemail").label-form Email Address :
+                .form-control
+                     input(type="password", name="password", required=true, placeholder="Enter your password", id="upass", value = (message ? data.password : ''))
+                     label(for="upass").label-form Password :
+                .form-message
+                    if(message)
+                        span.message__warn(id="password-span") #{message}
+                input(type="hidden", name="_csrf", value=(csrfToken))
+                .form-control
+                    button.btn.btn-primary(type="submit") Login
+            a(href="/auth/signup").message__link Not a User of ShopFest! SignUp Today

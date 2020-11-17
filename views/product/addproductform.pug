@@ -1,0 +1,24 @@
+extends ../layouts/mainlayout.pug
+
+block styles
+    link(rel="stylesheet", href="/styles/product.css")
+    link(rel="stylesheet", href="/styles/login.css")
+
+block content
+     main
+        section.product
+            .form-message
+                    if(message)
+                        span.message__warn(id="password-span",style) #{message}
+            
+            form(method="POST",action=(isEdit ? "/product/editproduct":"/product/postproduct") class="product-form", novalidate=(true))
+                input(type="text",placeholder="Enter Product Name", required, name="pname", value=( (isEdit || FormError) ? product.pname : '')).form-input-text
+                input(type="number",placeholder="Enter Product Price", required, name="price" step="0.01" value=((isEdit || FormError) ? product.price : '')).form-input-text
+                input(type="text",placeholder="Enter Product Image URL", required, name="purl" value=((isEdit || FormError) ? product.purl : '')).form-input-text
+                textarea(cols="30", rows="10", placeholder="Enter Product Description", required, name="pdescription",style="resize:none").form-input-text #{(isEdit || FormError) ? product.pdescription : ''}
+                if (isEdit === true)
+                    input(type="hidden", name="productid", value=product._id)
+                input(type="hidden", name="_csrf", value=(csrfToken))
+                button(type="submit").btn.btn-primary #{isEdit ? 'Update Product' : 'Add Product' }
+
+            

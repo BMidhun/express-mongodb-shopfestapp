@@ -1,0 +1,36 @@
+extends ../layouts/mainlayout.pug
+
+block styles
+    link(rel="stylesheet", href="/styles/order.css")
+
+block content
+    main
+        .orders
+            h2 Your Orders
+            if (orders.length > 0)
+                    each order in orders
+                        .orderscontainer
+                            .order__header
+                                span.orderid Order
+                                    span.orderid__text  ##{order._id}
+                                    span 
+                                        a.btn.btn-primary(href=`/shop/getInvoice/${order._id}`) Download Invoice
+                                span.orderdate Order Placed on #{`${new Date(order.createdAt).toGMTString()}`}
+                            ul.order__list
+                                each product in order.products
+                                    li.order__item
+                                        figure.orderimgwrap
+                                            img(src=(product.purl), alt="product")
+                                        .orderproductinfo
+                                            span.order__productname #{product.pname}
+                                            span.order__qty Qty : #{product.qty}
+                                        span.order__price $#{product.price} USD
+                                        span.order__delivery Expected Delivery on
+                                            span.order__delivery-text #{new Date().toGMTString()}
+                            .order__footer
+                                span.order__total $#{order.totalamount} USD    
+
+            else
+                h3 No Products 
+              
+                   
