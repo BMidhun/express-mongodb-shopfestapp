@@ -77,8 +77,8 @@ exports.postSignUp = async (req, res, next) => {
         if (result && result.success) {
             const html = pug.compileFile(path.join(rootDir, 'emailtemplates', 'welcome.pug'))
             const response = parseEmail({
-                from: 'midhunthetrapper@gmail.com',
-                to: 'midhunbabygeorge@gmail.com',
+                from: 'fromemail@gmail.com',
+                to: 'tomail@gmail.com',
                 subject: 'Welcome to ShopFest!',
                 html: html({ username: 'Midhun Baby' })
             })
